@@ -125,6 +125,9 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+REST_FRAMEWORK = {"DEFAULT_PERMISSION_CLASSES": [
+    "rest_framework.permission.AllowAny"]}
+
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]

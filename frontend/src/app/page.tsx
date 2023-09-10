@@ -8,9 +8,11 @@ export default function Home() {
 
   const handleClickMp3 = async () => {
     try { 
-      const data = {video_url: youtubeUrl}
+      const data = {
+        video_url: youtubeUrl,
+      };
       
-      await axios.post("http://127.0.0.1:8000/converter/", data, {withCredentials: true});
+      await axios.post("http://127.0.0.1:8000/converter/", data);
       setYoutubeUrl("");
     }
     catch (err) {
