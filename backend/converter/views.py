@@ -25,11 +25,16 @@ def download_video(request):
         try:
             data = json.loads(request.body)
             video_url = data.get('video_url')
+            output_path = 'output/%(title)s.mp4'
 
-            with YoutubeDL(params={'outtmpl': 'output/downloaded-video.mp4', 'format': 'bestvideo'}) as ydl:
-                ydl.download([video_url])
+            with YoutubeDL(params={'outtmpl': output_path}) as ydl:
+                info_dict = ydl.extract_info(video_url, download=True)
+                video_filename = ydl.prepare_filename(info_dict)
 
-            return HttpResponse(open('output/downloaded-video.mp4', 'rb').read(), content_type='video/mp4')
+            with open(video_filename, 'rb') as file:
+                response = HttpResponse(file.read(), content_type='video/mp4')
+                response['Content-Disposition'] = f'attachment; filename="{info_dict["title"]}.mp4"'
+                return response
 
         except json.JSONDecodeError:
             return JsonResponse({'error': 'Formato JSON inválido'}, status=400)
