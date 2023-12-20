@@ -9,12 +9,13 @@ export default function Home() {
   const [ youtubeUrlVideo, setYoutubeUrlVideo] = useState("");
 
   const handleClickMp3 = async () => {
+
     try { 
       const data = {
         video_url: youtubeUrlMp3,
       };
       
-      await axios.post("http://127.0.0.1:8000/converter/audio", data);
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/converter/audio`, data);
       setYoutubeUrlMp3("");
     }
     catch (err) {
@@ -28,7 +29,7 @@ export default function Home() {
         video_url: youtubeUrlVideo,
       };
       
-      await axios.post("http://127.0.0.1:8000/converter/video", data);
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/converter/video`, data);
       setYoutubeUrlVideo("");
     }
     catch (err) {
