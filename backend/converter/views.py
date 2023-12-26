@@ -10,7 +10,8 @@ def download_audio(request):
         try:
             data = json.loads(request.body)
             video_url = data.get('video_url')
-            with YoutubeDL(params={'outtmpl': 'output/%(title)s.mp3', 'format': 'bestaudio'}) as ydl:
+            with YoutubeDL(params={'outtmpl': 'output/%(title)s.mp3', 'format': 'bestaudio',
+                                   'verbose': True, }) as ydl:
                 ydl.download([video_url])
 
             return HttpResponse(open('output/%(title)s.mp3', 'rb').read(), content_type='audio/mp3')
@@ -27,7 +28,7 @@ def download_video(request):
             video_url = data.get('video_url')
             output_path = 'output/%(title)s.mp4'
 
-            with YoutubeDL(params={'outtmpl': output_path}) as ydl:
+            with YoutubeDL(params={'outtmpl': output_path, 'verbose': True}) as ydl:
                 info_dict = ydl.extract_info(video_url, download=True)
                 video_filename = ydl.prepare_filename(info_dict)
 
