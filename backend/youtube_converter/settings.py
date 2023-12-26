@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-si*law^qr)y#bi&t2ddeye9g7ce2@0vylqh^dd6)4j%9r@2k=x
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'https://youtube-converter-backend.onrender.com',
+    'youtube-converter-backend.onrender.com',
 ]
 
 
