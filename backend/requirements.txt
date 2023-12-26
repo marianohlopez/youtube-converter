@@ -37,4 +37,4 @@ tzdata==2023.3
 urllib3==2.0.4
 virtualenv==20.23.0
 virtualenv-clone==0.5.7
-youtube-dl==latest_version
+youtube-dl==2021.12.17
