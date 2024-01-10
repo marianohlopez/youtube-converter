@@ -68,8 +68,6 @@ export default function Home() {
             className="border p-2 w-full rounded-md focus:outline-none focus:border-red-500"
           />
         </div>
-
-        {/* VIDEO Convert Button */}
         <button
           onClick={handleClickVideo}
           className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 w-full flex items-center justify-center transition-all duration-300 mt-4"
