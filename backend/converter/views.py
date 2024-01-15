@@ -10,11 +10,11 @@ def download_audio(request):
         try:
             data = json.loads(request.body)
             video_url = data.get('video_url')
-            with YoutubeDL(params={'outtmpl': 'output/%(title)s.mp3', 'format': 'bestaudio',
+            with YoutubeDL(params={'outtmpl': 'media/%(title)s.mp3', 'format': 'bestaudio',
                                    'verbose': True, }) as ydl:
                 ydl.download([video_url])
 
-            return HttpResponse(open('output/%(title)s.mp3', 'rb').read(), content_type='audio/mp3')
+            return HttpResponse(open('media/%(title)s.mp3', 'rb').read(), content_type='audio/mp3')
 
         except json.JSONDecodeError:
             return JsonResponse({'error': 'Formato JSON inválido'}, status=400)
@@ -26,7 +26,7 @@ def download_video(request):
         try:
             data = json.loads(request.body)
             video_url = data.get('video_url')
-            output_path = 'output/%(title)s.mp4'
+            output_path = 'media/%(title)s.mp4'
 
             with YoutubeDL(params={'outtmpl': output_path, 'verbose': True}) as ydl:
                 info_dict = ydl.extract_info(video_url, download=True)
