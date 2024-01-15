@@ -9,3 +9,4 @@ urlpatterns = [
 ]
 
 urlpatterns += static(settings.MEDIA_URL, documents_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, documents_root=settings.STATIC_ROOT)
